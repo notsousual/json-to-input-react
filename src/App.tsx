@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useState } from "react";
+import "./App.css";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Showcase } from "./pages/Showcase";
+import { CustomConfig } from "./pages/CustomConfig";
+import { Header } from "./components/Header";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./theme/theme";
+import { ConfigContext } from "./context/ConfigContext";
 
 function App() {
+  const [data, updateData] = useState<string>(useContext(ConfigContext).data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ConfigContext.Provider value={{ data, updateData }}>
+        <BrowserRouter>
+          <Header></Header>
+          <Routes>
+            <Route path={`/`} element={<Showcase />} />
+            <Route path={`/custom-congig`} element={<CustomConfig />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </ConfigContext.Provider>
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,22 @@
+{
+  "title": "Form title",
+  "buttons": ["Ok", "Cancel", "Apply"],
+  "items": [
+    { "label": "Date input", "type": "date" },
+    { "label": "Number input", "type": "number" },
+    { "label": "Number input", "type": "number" },
+    { "laffel": "Number input", "type": "numeber" },
+    { "type": "text" },
+    { "label": "Single string input", "type": "text" },
+    { "label": "Multiline input", "type": "textarea" },
+    {
+      "label": "Checkbox input",
+      "type": "checkbox"
+    },
+    {
+      "label": "Radio buttons input",
+      "type": "radio",
+      "radioItems": ["Czesc", "Ciao", "Ahoj"]
+    }
+  ]
+}
