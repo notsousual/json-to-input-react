@@ -6,7 +6,7 @@ I used a workaround using the Context API instead of rewriting the JSON file in 
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run in the terminal:
 
 ### `yarn start`
 
