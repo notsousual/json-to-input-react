@@ -1,5 +1,5 @@
-[Material UI library](https://mui.com/material-ui/getting-started/overview/) is used.
-You cannot hit 'apply changes' until you write valid JSON 🙃.
+[Material UI library](https://mui.com/material-ui/getting-started/overview/) is used.\
+You cannot hit 'apply changes' until you write valid JSON 🙃.\
 I used a workaround using the Context API instead of rewriting the JSON file in the frontend of the application.
 
 # Getting Started 
