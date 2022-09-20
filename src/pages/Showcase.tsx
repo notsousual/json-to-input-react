@@ -12,11 +12,35 @@ import {
 } from "@mui/material";
 import { useContext } from "react";
 import { ConfigContext } from "../context/ConfigContext";
-import { InputBase } from "../model/InputBase";
-import { InputTypes } from "../model/InputTypes";
+import { InputBase } from "../model/types/InputBase";
+import { InputTypes } from "../model/enum/InputTypes";
 
 export const Showcase = () => {
-  const config = JSON.parse(useContext(ConfigContext).data);
+  const config = useContext(ConfigContext).data;
+
+  const Buttons = () => {
+    try {
+      if (config?.buttons) {
+        return (
+          <Stack direction={"row"} spacing={2}>
+            {config.buttons.map((label: string, index: number) => (
+              <Button
+                key={index}
+                color={"primary"}
+                size={"large"}
+                variant={"contained"}
+                type={label.toLowerCase() === "submit" ? "submit" : undefined}
+              >
+                {label}
+              </Button>
+            ))}
+          </Stack>
+        );
+      }
+    } catch (e) {
+      return <Typography>Oops! Error in buttons!</Typography>;
+    }
+  };
 
   const switchInput = (input: InputBase, index: number) => {
     try {
@@ -28,9 +52,7 @@ export const Showcase = () => {
               key={index}
               type="number"
               InputLabelProps={{ shrink: true }}
-            >
-              Really a number {input.label}
-            </TextField>
+            />
           );
         case InputTypes.Date:
           return (
@@ -39,9 +61,7 @@ export const Showcase = () => {
               key={index}
               type="date"
               InputLabelProps={{ shrink: true }}
-            >
-              Really a number {input.label}
-            </TextField>
+            />
           );
         case InputTypes.SingleString:
           return (
@@ -49,9 +69,7 @@ export const Showcase = () => {
               label={input.label}
               key={index}
               InputLabelProps={{ shrink: true }}
-            >
-              Really a number {input.label}
-            </TextField>
+            />
           );
 
         case InputTypes.MultipleStrings:
@@ -62,9 +80,7 @@ export const Showcase = () => {
               multiline
               minRows={5}
               InputLabelProps={{ shrink: true }}
-            >
-              Really a number {input.label}
-            </TextField>
+            />
           );
 
         case InputTypes.Logical:
@@ -82,14 +98,15 @@ export const Showcase = () => {
               <FormLabel>{input.label}</FormLabel>
               <RadioGroup>
                 {input.radioItems?.map(
-                  (radioItem: string, indexRadio: number) => (
-                    <FormControlLabel
-                      key={indexRadio}
-                      value={radioItem}
-                      control={<Radio />}
-                      label={radioItem}
-                    />
-                  )
+                  (radioItem: string, indexRadio: number) =>
+                    radioItem ? (
+                      <FormControlLabel
+                        key={indexRadio}
+                        value={radioItem}
+                        control={<Radio />}
+                        label={radioItem}
+                      />
+                    ) : null
                 )}
               </RadioGroup>
             </FormControl>
@@ -97,37 +114,46 @@ export const Showcase = () => {
 
         default:
           return (
-            <div key={index}>Uh-oh! Your JSON input is probably incorrect</div>
+            <div key={index}>
+              Uh-oh! Your JSON input type is probably incorrect
+            </div>
           );
       }
     } catch (e) {
       return (
-        <div key={index}>Uh-oh! Your JSON input is probably incorrect</div>
+        <div key={index}>Uh-oh, error! Your JSON is probably incorrect</div>
       );
     }
   };
 
   return (
     <Stack alignItems={"center"} spacing={3}>
-      {config.title && <Typography variant={"h3"}>{config.title}</Typography>}
-
-      <Stack spacing={3} width={"50%"}>
-        {config.items?.map((item: any, index: number) =>
-          switchInput(item, index)
-        )}
-      </Stack>
-      <Stack direction={"row"} spacing={3}>
-        {config.buttons?.map((item: string, index: number) => (
-          <Button
-            key={index}
-            color={"primary"}
-            size={"large"}
-            variant={"contained"}
+      {config !== undefined ? (
+        <>
+          {config.title ? (
+            <Typography variant={"h3"}>{config.title}</Typography>
+          ) : null}
+          <form
+            style={{
+              width: "70%",
+              display: "flex",
+              flexDirection: "column",
+              rowGap: 20,
+            }}
           >
-            {item}
-          </Button>
-        ))}
-      </Stack>
+            {config.items?.map((item: any, index: number) =>
+              switchInput(item, index)
+            )}
+            <Stack direction={"row"} spacing={3}>
+              <></>
+            </Stack>
+          </form>
+
+          {Buttons()}
+        </>
+      ) : (
+        <Typography variant="h3">Object is undefined</Typography>
+      )}
     </Stack>
   );
 };

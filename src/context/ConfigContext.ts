@@ -1,14 +1,15 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 import defaultValues from "../model/defaultValues.json";
+import { JSONObject } from "../model/types/JSONObject";
 
 type ConfigContextType = {
-  data: string;
-  updateData: Dispatch<SetStateAction<string>>;
+  data: undefined | JSONObject;
+  updateData: Dispatch<SetStateAction<JSONObject | undefined>>;
 };
 
 export const ConfigContextDefaultValue: ConfigContextType = {
-  data: JSON.stringify(defaultValues),
-  updateData: () => JSON.stringify(defaultValues),
+  data: defaultValues as JSONObject,
+  updateData: () => defaultValues as JSONObject,
 };
 
 export const ConfigContext = createContext<ConfigContextType>(

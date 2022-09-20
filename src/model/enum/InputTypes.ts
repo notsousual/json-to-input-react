@@ -5,4 +5,5 @@ export enum InputTypes {
   MultipleStrings= "textarea",
   Logical = "checkbox",
   Enum = "radio",
+  Undefined = "undefined",
 }

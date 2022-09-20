@@ -21,8 +21,8 @@ export const Header = () => {
         <MenuItem component={Link} to="/">
           Render result
         </MenuItem>
-        <MenuItem component={Link} to="/custom-congig">
-          Custom configuration
+        <MenuItem component={Link} to="/custom-config">
+          Edit configuration
         </MenuItem>
       </Stack>
     </Stack>

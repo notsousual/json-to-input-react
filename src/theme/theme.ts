@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { Colors } from "./colors";
 
 export const theme = createTheme({
   typography: {
@@ -16,7 +15,7 @@ export const theme = createTheme({
         root: {
           fontWeight: 700,
           ":hover": {
-            color: Colors.primary,
+            color: "#3789ff",
           },
           transition: "0.3s",
         },
