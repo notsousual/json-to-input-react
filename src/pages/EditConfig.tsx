@@ -3,7 +3,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import { ConfigContext } from "../context/ConfigContext";
 import { JSONObject } from "../model/types/JSONObject";
 import { parseJSON } from "../model/parsers/parseJSON";
-import { InputTypes } from "../model/enum/InputTypes";
+import { InputTypes } from "../model/enums/InputTypes";
 
 export const EditConfig = () => {
   const config = useContext(ConfigContext).data;

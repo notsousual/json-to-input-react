@@ -1,4 +1,4 @@
-import { InputTypes } from "../enum/InputTypes";
+import { InputTypes } from "../enums/InputTypes";
 
 export const parseEnum = (x: unknown): InputTypes => {
   if (Object.values(InputTypes).includes(x as InputTypes)) {

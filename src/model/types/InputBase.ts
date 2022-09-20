@@ -1,4 +1,4 @@
-import { InputTypes } from "../enum/InputTypes";
+import { InputTypes } from "../enums/InputTypes";
 export type InputBase = {
   type: InputTypes;
   label?: string;

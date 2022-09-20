@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <ConfigContext.Provider value={{ data, updateData }}>
         <BrowserRouter>
-          <Header></Header>
+          <Header />
           <Routes>
             <Route path={`/`} element={<Showcase />} />
             <Route path={`/custom-config`} element={<EditConfig />} />
